@@ -1,0 +1,6 @@
+body{
+background: url(../../assets/fondo.jpg);
+background-position: 50%50%;
+background-size: cover;
+height: 100vh;
+}

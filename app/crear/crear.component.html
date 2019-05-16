@@ -1,0 +1,51 @@
+<div class="breadcrumb">
+    <a routerLink="/lugares">Lugares</a> / Crear Lugar
+</div>
+<div class="container">
+    <h3>Crear Negocios</h3>
+    <div class="row">
+        <div class="col-md-4">
+            <div class="form-box">
+<label>Nombre del negocio</label>
+<input type="text" class="form-control" [(ngModel)]="lugar.nombre"/>
+<br/>
+<label>Distancia</label>
+<input type="number" class="form-control" [(ngModel)]="lugar.distancia" />
+<br />
+<label>Cercanía</label>
+<input type="number" class="form-control" [(ngModel)]="lugar.cercania" />
+<br />
+<label>Plan</label>
+<input type="text" class="form-control" [(ngModel)]="lugar.plan" />
+<br />
+<label>Descripción</label>
+<textarea class="form-control" [(ngModel)]="lugar.descripcion"></textarea>
+<hr />
+<h3>Datos de dirección</h3>
+<div class="card">
+    <div class="card-body">
+        <form>
+            <h3>Buscar negocio en Google Maps</h3>
+            <input [formControl]="searchField" class="form-control"/>
+        </form>
+        <ul class="list-group">
+            <li class="list-group-item" *ngFor="let result of results$ | async" (click)="seleccionarDireccion(result)">{{result.formatted_address}}</li>
+        </ul>
+    </div>
+</div>
+<label>Calle y Número</label>
+<input type="text" class="form-control" [(ngModel)]="lugar.calle" />
+<br />
+<label>Ciudad</label>
+<input type="text" class="form-control" [(ngModel)]="lugar.ciudad" />
+<br />
+<label>País</label>
+<input type="text" class="form-control" [(ngModel)]="lugar.pais" />
+<br />
+
+<a class="btn btn-primary" (click)="guardarLugar()">Enviar </a>
+<a class="btn btn-danger">Cancelar</a>
+</div>
+</div>
+</div>
+</div>

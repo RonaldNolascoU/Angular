@@ -1,0 +1,61 @@
+<agm-map [latitude]="lat" [longitude]="lng" [zoom]="13">
+  <agm-marker *ngFor="let lugar of lugares" [latitude]="lugar.lat" [longitude]="lugar.lng"></agm-marker>
+</agm-map>
+<hr />
+<!---<div id="cuadrado" [@contenedorAnimable]="state" (@contenedorAnimable.start)="animacionInicial($event)" (@contenedorAnimable.done)="animacionFinal($event)"></div>
+<a class="btn btn-info" (click)="animar()">Animar</a>-->
+<div class="container">
+  <div class="row">
+    <div class="col-md-8">
+      <h2>Lugares Cercanos</h2>
+      <a class="btn btn-primary" routerLink="/crear/new">
+        Crear Nuevo Negocio
+      </a>
+           
+      <ul class="list-group">
+        <ng-container *ngFor="let lugar of lugares">
+          
+            <li class="list-group-item" *ngIf="lugar.plan =='gratuito'">
+              <a routerLink="/crear/{{lugar.id}}">
+                <h3>{{lugar.nombre}}
+                </h3> 
+              </a>
+              
+              <br/>
+                <span class="badge badge-primary">Creado: {{lugar.id |date:"mediumTime" | uppercase}}</span>
+                <span class="badge badge-danger">{{lugar.ciudad}}</span>
+                <div class="card border-success mb-3">
+                  <div class="card-body">
+                    <p [innerHtml]="lugar.descripcion |linkifystr"></p>
+                  </div>
+                </div>
+              
+            </li>
+        </ng-container>
+      </ul>
+    </div>
+    <div class="col-md-4 card border-success mb-1" [@contenedorAnimable]="state">
+      <h2>Destacados</h2>
+        <ng-container *ngFor="let lugar of lugares">
+        
+          <div class="alert alert-warning padding" *ngIf="lugar.plan == 'pagado'">
+            <a routerLink="/crear/{{lugar.id}}">
+              <h3>{{lugar.nombre}}
+                <span *ngIf="lugar.plan == 'pagado'" class="glyphicon glyphicon-star"></span> 
+                <small><span class="badge badge-warning glyphicon glyphicon-star">Pagado</span></small>              
+              </h3>
+              
+             <span class="badge badge-danger">{{lugar.ciudad}}</span>
+             <span class="badge badge-info">{{lugar.cercania}} KM</span>
+            </a>        
+            <br />
+            <div class="card border-info mb-3">
+              <div class="card-body">
+                <p [innerHtml]="lugar.descripcion |linkifystr"></p>
+              </div>
+            </div>
+          </div>
+        </ng-container>
+    </div>
+  </div>
+</div>
